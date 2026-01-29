@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" />
+</head>
+<style>
+
+ .navbar {
+  background: #000000;
+  height: 70px;
+}
+
+/* Brand Text & Logo */
+.navbar-brand {
+  color: #fff !important;
+  font-weight: bold;
+  position: relative;
+  font-size: 1.5rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+}
+
+/* Logo Size - bigger but doesn't stretch navbar */
+.navbar-logo {
+  height: 60px; /* Bigger logo */
+  width: auto;
+  object-fit: contain;
+}
+
+/* Nav Links */
+.nav-link {
+  color: #fff !important;
+  position: relative;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+/* Hover underline effect with a single color */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 3px;
+  background: #ff7f50; /* Coral underline */
+  transition: 0.3s;
+  border-radius: 2px;
+}
+
+.nav-link:hover {
+  color: #ff7f50 !important; /* Hover color */
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  background: #1c1c1c;
+  border: none;
+}
+
+.dropdown-item {
+  color: #ddd;
+  transition: all 0.3s;
+}
+
+.dropdown-item:hover {
+  background: #ff7f50;
+  color: #fff;
+}
+
+/* Mobile Toggler */
+.navbar-toggler {
+  border: none;
+}
+
+
+
+       /* Card styling */
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect on card */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+/* Carousel image styling */
+.carousel-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+/* Slight zoom effect on hover */
+.card:hover .carousel-inner img {
+  transform: scale(1.05);
+}
+
+/* Card body text styling */
+.card-body {
+  text-align: center;
+  padding: 15px;
+}
+
+.card-body h5 {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.card-body p {
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.card-body strong {
+  color: #c00;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Button styling */
+.btn-danger {
+  background-color: #c00;
+  border: none;
+  padding: 6px 15px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+  background-color: #900;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .carousel-inner img {
+    height: 180px;
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel-inner img {
+    height: 150px;
+  }
+}
+
+
+/* footer */
+.site-footer {
+  width: 100%;
+  background: linear-gradient(135deg, #111, #1a1a1a);
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+  padding: 60px 80px;
+}
+
+.footer-container h3, 
+.footer-container h4 {
+  color: #ff7f50;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.footer-container h3::after,
+.footer-container h4::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 50px;
+  height: 3px;
+  background: #ff7f50;
+  border-radius: 2px;
+}
+
+.footer-about p,
+.footer-links ul li,
+.footer-contact p,
+.footer-subscribe p {
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links ul li {
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.footer-links ul li a {
+  color: #ccc;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-links ul li a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  left: 0;
+  bottom: -3px;
+  background: #ff7f50;
+  transition: 0.3s;
+}
+
+.footer-links ul li a:hover::after {
+  width: 100%;
+}
+
+.footer-subscribe form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.footer-subscribe input[type="email"] {
+  flex: 1;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 30px;
+  outline: none;
+  font-size: 0.9rem;
+}
+
+.footer-subscribe button {
+  background: #ff7f50;
+  border: none;
+  color: #111;
+  padding: 10px 25px;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.footer-subscribe button:hover {
+  background: #e0663c;
+  transform: scale(1.05);
+}
+
+.footer-contact .social-icons {
+  margin-top: 15px;
+}
+
+.footer-contact .social-icons a {
+  display: inline-block;
+  margin-right: 10px;
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.footer-contact .social-icons a:hover {
+  transform: scale(1.2);
+  filter: brightness(1.5);
+}
+
+.footer-contact .social-icons img {
+  width: 28px;
+  height: 28px;
+}
+
+.footer-bottom {
+  background: #000;
+  text-align: center;
+  padding: 15px 0;
+  border-top: 1px solid #333;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+/* Responsive adjustments */
+@media(max-width:768px) {
+  .footer-container {
+    padding: 40px 20px;
+    gap: 30px;
+  }
+
+  .footer-subscribe form {
+    flex-direction: column;
+  }
+
+  .footer-subscribe button {
+    width: 100%;
+  }
+}
+
+
+
+  
+
+
+    
+
+    
+ 
+       
+
+</style>
+<body>
+    <div class="container-fluid">
+
+        <!-- navbar -->
+
+
+      <div class="container-fluid px-0">
+  <nav class="navbar navbar-expand-lg fixed-top px-4">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+      <!-- BIGGER CAR LOGO -->
+      <img src="New folder/istockphoto-1081502150-612x612.jpg"
+           alt="Car Logo"
+           class="navbar-logo">
+      AutoWorld
+    </a>
+
+    <button class="navbar-toggler bg-light" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto gap-4">
+        <li class="nav-item"><a class="nav-link" href="Home.html" target="_blank">Home</a></li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Cars</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="bmw.html">BMW</a></li>
+            <li><a class="dropdown-item" href="Toyota.html" target="_blank">Toyota</a></li>
+            <li><a class="dropdown-item" href="suzuki.html" target="_blank">Suzuki</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="services.html" target="_blank">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="contactus.html" target="_blank">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+
+<div class="container py-5">
+
+  
+  <div class="row g-4">
+
+    <!-- CARD 1 -->
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card h-100">
+        <div class="ratio ratio-4x3">
+          <div id="carouselCar1" class="carousel slide carousel-fade" data-bs-interval="false">
+            <div class="carousel-inner">
+              <div class="carousel-item active"><img src="New folder/m5fireredmetallic.png" class="d-block img-fluid"></div>
+              <div class="carousel-item"><img src="New folder/m5mbrooklyngreymetallic (1).png" class="d-block img-fluid"></div>
+              <div class="carousel-item"><img src="New folder/m5misleofmangreenmetallic.png" class="d-block img-fluid"></div>
+              <div class="carousel-item"><img src="New folder/m5mmarinabaybluemetallic.png" class="d-block img-fluid"></div>
+            </div>
+            <button class="carousel-control-prev" data-bs-target="#carouselCar1" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+            <button class="carousel-control-next" data-bs-target="#carouselCar1" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+          </div>
+        </div>
+        <div class="card-body text-center">
+          <h5>BMW M5</h5>
+          <p>Luxury sports sedan</p>
+          <strong>PKR 25,500,000</strong><br>
+          <a href="bmw m5.html" class="btn btn-danger mt-2">Explore</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card h-100">
+        <div class="ratio ratio-4x3">
+          <div id="carouselCar2" class="carousel slide carousel-fade" data-bs-interval="false">
+            <div class="carousel-inner">
+              <div class="carousel-item active"><img src="New folder/m8aventurineredmetallic.png" class="d-block img-fluid"></div>
+              <div class="carousel-item"><img src="New folder/m8blacksapphiremetallic.png" class="d-block img-fluid"></div>
+              <div class="carousel-item"><img src="New folder/m8tanzanitebluemetallic.png" class="d-block img-fluid"></div>
+              <div class="carousel-item"><img src="New folder/m8brooklyngreymetallic.png" class="d-block img-fluid"></div>
+            </div>
+            <button class="carousel-control-prev" data-bs-target="#carouselCar2" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+            <button class="carousel-control-next" data-bs-target="#carouselCar2" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+          </div>
+        </div>
+        <div class="card-body text-center">
+          <h5>BMW M8</h5>
+          <p>Luxury sports coupe</p>
+          <strong>PKR 65,200,000</strong><br>
+          <a href="bmw m8.html" class="btn btn-danger mt-2">Explore</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card h-100">
+        <div class="ratio ratio-4x3">
+          <div id="carouselCar3" class="carousel slide carousel-fade" data-bs-interval="false">
+            <div class="carousel-inner">
+              <div class="carousel-item active"><img src="https://imgd.aeplcdn.com/600x337/n/miaiodb_1744501.jpg?q=80" class="d-block img-fluid"></div>
+              <div class="carousel-item"><img src="https://imgd.aeplcdn.com/600x337/n/6tvhodb_1744499.jpg?q=80" class="d-block img-fluid"></div>
+              <div class="carousel-item"><img src="https://imgd.aeplcdn.com/600x337/n/46uhodb_1744497.jpg?q=80" class="d-block img-fluid"></div>
+              <div class="carousel-item"><img src="https://imgd.aeplcdn.com/600x337/n/tpthodb_1744495.jpg?q=80" class="d-block img-fluid"></div>
+            </div>
+            <button class="carousel-control-prev" data-bs-target="#carouselCar3" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+            <button class="carousel-control-next" data-bs-target="#carouselCar3" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+          </div>
+        </div>
+        <div class="card-body text-center">
+          <h5>BMW M4 Sport</h5>
+          <p>Performance edition</p>
+          <strong>PKR 20,000,000</strong><br>
+          <a href="bmw m4 sport.html" class="btn btn-danger mt-2">Explore</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="row g-4 mt-1">
+
+    <!-- CARD 4 -->
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card h-100">
+        <div class="ratio ratio-4x3">
+          <div id="carouselCar4" class="carousel slide carousel-fade" data-bs-interval="false">
+            <div class="carousel-inner">
+              <div class="carousel-item active"><img src="https://imgd.aeplcdn.com/600x337/n/yskim9b_1796713.jpg?q=80" class="d-block img-fluid"></div>
+              <div class="carousel-item"><img src="https://imgd.aeplcdn.com/600x337/n/db8im9b_1796711.jpg?q=80" class="d-block img-fluid"></div>
+              <div class="carousel-item"><img src="https://imgd.aeplcdn.com/600x337/n/6vhim9b_1796709.jpg?q=80" class="d-block img-fluid"></div>
+              <div class="carousel-item"><img src="https://imgd.aeplcdn.com/600x337/n/hq7im9b_1796715.jpg?q=80" class="d-block img-fluid"></div>
+            </div>
+            <button class="carousel-control-prev" data-bs-target="#carouselCar4" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+            <button class="carousel-control-next" data-bs-target="#carouselCar4" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+          </div>
+        </div>
+        <div class="card-body text-center">
+          <h5>BMW M34i</h5>
+          <p>Luxury sports sedan</p>
+          <strong>PKR 75,00000</strong><br>
+          <a href="" class="btn btn-danger mt-2">Explore</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 5 -->
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card h-100">
+        <div class="ratio ratio-4x3">
+          <div id="carouselCar5" class="carousel slide carousel-fade" data-bs-interval="false">
+            <div class="carousel-inner">
+              <div class="carousel-item active"><img src="https://imgd.aeplcdn.com/600x337/n/0g6go0b_1636459.jpg?q=80" class="d-block img-fluid"></div>
+              <div class="carousel-item"><img src="https://imgd.aeplcdn.com/600x337/n/ilaho0b_1636471.jpg?q=80" class="d-block img-fluid"></div>
+              <div class="carousel-item"><img src="https://imgd.aeplcdn.com/600x337/n/i5tgo0b_1636465.jpg?q=80" class="d-block img-fluid"></div>
+              <div class="carousel-item"><img src="https://imgd.aeplcdn.com/600x337/n/rbugo0b_1636467.jpg?q=80" class="d-block img-fluid"></div>
+            </div>
+            <button class="carousel-control-prev" data-bs-target="#carouselCar5" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+            <button class="carousel-control-next" data-bs-target="#carouselCar5" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+          </div>
+        </div>
+        <div class="card-body text-center">
+          <h5>BMW M7 Series</h5>
+          <p>Luxury sports coupe</p>
+          <strong>PKR 81,150,000</strong><br>
+          <a href="bmw m7.html" class="btn btn-danger mt-2">Explore</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 6 -->
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card h-100">
+        <div class="ratio ratio-4x3">
+          <div id="carouselCar6" class="carousel slide carousel-fade" data-bs-interval="false">
+            <div class="carousel-inner">
+              <div class="carousel-item active"><img src="https://imgd.aeplcdn.com/600x337/n/szh050b_1640709.jpg?q=80" class="d-block img-fluid"></div>
+              <div class="carousel-item"><img src="https://imgd.aeplcdn.com/600x337/n/lpk050b_1640713.jpg?q=80" class="d-block img-fluid"></div>
+              <div class="carousel-item"><img src="https://imgd.aeplcdn.com/600x337/n/s48050b_1640711.jpg?q=80" class="d-block img-fluid"></div>
+            </div>
+            <button class="carousel-control-prev" data-bs-target="#carouselCar6" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+            <button class="carousel-control-next" data-bs-target="#carouselCar6" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+          </div>
+        </div>
+        <div class="card-body text-center">
+          <h5>BMW X1</h5>
+          <p>Performance edition</p>
+          <strong>PKR 38,000,000</strong><br>
+          <a href="" class="btn btn-danger mt-2">Explore</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
+   <div class="row g-4 mt-1">
+
+    <!-- CARD 7 -->
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card h-100">
+        <div class="ratio ratio-4x3">
+          <div id="carouselCar7" class="carousel slide carousel-fade" data-bs-interval="false">
+            <div class="carousel-inner">
+              <div class="carousel-item active"><img src="https://imgd.aeplcdn.com/600x337/n/rpqv7fb_1823391.jpg?q=80" class="d-block img-fluid"></div>
+              <div class="carousel-item"><img src="https://imgd.aeplcdn.com/600x337/n/it5v7fb_1823393.jpg?q=80" class="d-block img-fluid"></div>
+              <div class="carousel-item"><img src="https://imgd.aeplcdn.com/600x337/n/4gtv7fb_1823395.jpg?q=80" class="d-block img-fluid"></div>
+            </div>
+            <button class="carousel-control-prev" data-bs-target="#carouselCar7" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+            <button class="carousel-control-next" data-bs-target="#carouselCar7" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+          </div>
+        </div>
+        <div class="card-body text-center">
+          <h5>BMW 3 Series LWB</h5>
+          <p>Luxury sports sedan</p>
+          <strong>PKR 10,000,000</strong><br>
+          <a href="" class="btn btn-danger mt-2">Explore</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 8 -->
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card h-100">
+        <div class="ratio ratio-4x3">
+          <div id="carouselCar8" class="carousel slide carousel-fade" data-bs-interval="false">
+            <div class="carousel-inner">
+              <div class="carousel-item active"><img src="https://imgd.aeplcdn.com/600x337/n/a0tp0fb_1809625.jpg?q=80" class="d-block img-fluid"></div>
+              <div class="carousel-item"><img src="https://imgd.aeplcdn.com/600x337/n/lp5p0fb_1809623.jpg?q=80" class="d-block img-fluid"></div>
+              <div class="carousel-item"><img src="https://imgd.aeplcdn.com/600x337/n/m5up0fb_1809627.jpg?q=80" class="d-block img-fluid"></div>
+              <div class="carousel-item"><img src="https://imgd.aeplcdn.com/600x337/n/uxqp0fb_1809621.jpg?q=80" class="d-block img-fluid"></div>
+            </div>
+            <button class="carousel-control-prev" data-bs-target="#carouselCar8" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+            <button class="carousel-control-next" data-bs-target="#carouselCar8" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+          </div>
+        </div>
+        <div class="card-body text-center">
+          <h5>BMW X3</h5>
+          <p>Luxury sports coupe</p>
+          <strong>PKR 45,000,000</strong><br>
+          <a href="bmw x7.html" class="btn btn-danger mt-2">Explore</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 9 -->
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card h-100">
+        <div class="ratio ratio-4x3">
+          <div id="carouselCar9" class="carousel slide carousel-fade" data-bs-interval="false">
+            <div class="carousel-inner">
+              <div class="carousel-item active"><img src="https://imgd.aeplcdn.com/600x337/n/49insgb_1858120.jpg?q=80" class="d-block img-fluid"></div>
+              <div class="carousel-item"><img src="https://imgd.aeplcdn.com/600x337/n/67jnsgb_1858122.jpg?q=80" class="d-block img-fluid"></div>
+              <div class="carousel-item"><img src="https://imgd.aeplcdn.com/600x337/n/iylnsgb_1858124.jpg?q=80" class="d-block img-fluid"></div>
+              <div class="carousel-item"><img src="https://imgd.aeplcdn.com/600x337/n/z3gnsgb_1858118.jpg?q=80" class="d-block img-fluid"></div>
+            </div>
+            <button class="carousel-control-prev" data-bs-target="#carouselCar9" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+            <button class="carousel-control-next" data-bs-target="#carouselCar9" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+          </div>
+        </div>
+        <div class="card-body text-center">
+          <h5>BMW 2 Series Gran Coupe</h5>
+          <p>Performance edition</p>
+          <strong>PKR 18,000,000</strong><br>
+          <a href="" class="btn btn-danger mt-2">Explore</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+        </div>
+
+
+        <!-- footer -->
+
+        <footer class="site-footer">
+  <div class="footer-container">
+
+    <!-- About Section -->
+    <div class="footer-about">
+      <h3>AutoWorld</h3>
+      <p>Discover the world of luxury and performance cars. We provide top-notch services and a seamless car shopping experience.</p>
+    </div>
+
+    <!-- Customer Service / Links -->
+    <div class="footer-links">
+      <h4>Customer Service</h4>
+      <ul>
+        <li><a href="Home.html" target="_blank">Home</a></li>
+        <li><a href="Toyota.html" target="_blank">Cars</a></li>
+        <li><a href="services.html" target="_blank">Services</a></li>
+        <li><a href="contactus.html" target="_blank">Contact</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+
+    <!-- Subscription Form -->
+    <div class="footer-subscribe">
+      <h4>Subscribe</h4>
+      <p>Get the latest updates and exclusive offers.</p>
+      <form>
+        <input type="email" placeholder="Enter your email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+
+    <!-- Shop Info / Contact -->
+    <div class="footer-contact">
+      <h4>Contact & Shop Info</h4>
+      <p>Email: info@autoworld.com</p>
+      <p>Phone: +123 456 7890</p>
+      <p>Address: 123 Luxury Lane, Auto City</p>
+      <div class="social-icons">
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Twitter"></a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"></a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer Bottom Bar -->
+  <div class="footer-bottom">
+    <p>&copy; 2025 AutoWorld. All rights reserved.</p>
+  </div>
+</footer>
+
+
+
+
+
+
+
+      
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
